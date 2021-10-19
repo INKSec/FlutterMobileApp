@@ -1,12 +1,11 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:mob_app/views/test_view.dart';
 
 class LoginView extends StatelessWidget {
+  const LoginView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       appBar: AppBar(title: const Text("Login")),
       body: Center(
