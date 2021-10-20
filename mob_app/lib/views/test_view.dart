@@ -13,7 +13,7 @@ class TestViewState extends State<TestView> {
   String? yeah;
 
   Future<String> _getYeah() {
-    return HttpRequest.getString("https://google.com");
+    return Future<String>(() => "test");
   }
 
   void _doUpdateYeah() {
