@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:mob_app/views/test_view.dart';
 import 'package:mob_app/views/login.dart';
