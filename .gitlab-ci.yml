@@ -33,4 +33,4 @@ test:
     paths:
       - $CI_PROJECT_DIR/mob_app/coverage
     reports:
-      junit: report.xml
+      junit: mob_app/report.xml
