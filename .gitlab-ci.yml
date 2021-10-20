@@ -10,6 +10,7 @@ code_quality:
     - pub global activate dart_code_metrics
     - export PATH="$PATH":"$HOME/.pub-cache/bin"
   script:
+    - cd mob_app
     - metrics lib -r codeclimate  > gl-code-quality-report.json
   artifacts:
     reports:
@@ -22,6 +23,7 @@ test:
     - pub global activate junitreport
     - export PATH="$PATH":"$HOME/.pub-cache/bin"
   script:
+    - cd mob_app
     - flutter test --machine --coverage | tojunit -o report.xml
     - lcov --summary coverage/lcov.info
     - genhtml coverage/lcov.info --output=coverage
