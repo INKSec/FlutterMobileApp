@@ -11,7 +11,7 @@ code_quality:
     - export PATH="$PATH":"$HOME/.pub-cache/bin"
   script:
     - cd mob_app
-    - metrics lib -r codeclimate  > gl-code-quality-report.json
+    - metrics lib -r codeclimate  > ../gl-code-quality-report.json
   artifacts:
     reports:
       codequality: gl-code-quality-report.json
@@ -31,6 +31,6 @@ test:
   artifacts:
     name: coverage
     paths:
-      - $CI_PROJECT_DIR/coverage
+      - $CI_PROJECT_DIR/mob_app/coverage
     reports:
       junit: report.xml
