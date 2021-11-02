@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
+import 'navigation_drawer.dart';
+
 class TestView extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -33,7 +35,8 @@ class TestViewState extends State<TestView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("Test View")),
+        endDrawer: const NavigationDrawerWidget(),
+        appBar: AppBar(title: const Text("Test View")),
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(120.0),
