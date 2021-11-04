@@ -13,7 +13,7 @@ class LoginView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-                padding: const EdgeInsets.only(left: 150, right: 150),
+                padding: const EdgeInsets.only(left: 100, right: 100),
                 child: Form(
                   child: Column(children: [
                     const TextField(

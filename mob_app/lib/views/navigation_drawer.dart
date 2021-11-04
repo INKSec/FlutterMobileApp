@@ -53,7 +53,12 @@ class NavigationDrawerWidget extends StatelessWidget {
             buildMenuItem(
               text: 'Impressum',
               icon: Icons.text_fields,
-            )
+            ),
+            const SizedBox(height: 20),
+            buildMenuItem(
+              text: 'NewsApi',
+              icon: Icons.security,
+            ),
           ],
         ),
       ),
