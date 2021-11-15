@@ -8,6 +8,9 @@ class MeinVerein extends StatelessWidget {
   Widget build(BuildContext context) => Scaffold(
         endDrawer: const NavigationDrawerWidget(),
         appBar: AppBar(
+          leading: (ModalRoute.of(context)?.canPop ?? false)
+              ? const BackButton()
+              : null, // Backbutton
           title: const Text('Mein Verein'),
           centerTitle: true,
           backgroundColor: Colors.red,

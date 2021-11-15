@@ -36,7 +36,11 @@ class TestViewState extends State<TestView> {
   Widget build(BuildContext context) {
     return Scaffold(
         endDrawer: const NavigationDrawerWidget(),
-        appBar: AppBar(title: const Text("Test View")),
+        appBar: AppBar(
+            leading: (ModalRoute.of(context)?.canPop ?? false)
+                ? const BackButton()
+                : null, // Backbutton
+            title: const Text("Test View")),
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(120.0),
