@@ -1,1 +1,0 @@
-this file is here to stop the CI from complaining about non existing test directories. Please only remove after adding at least one test.
