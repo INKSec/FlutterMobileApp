@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mob_app/views/mein_verein.dart';
 import 'package:mob_app/views/news.dart';
-import 'package:mob_app/views/test_view.dart';
+import 'package:mob_app/views/home_view.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
   final padding = const EdgeInsets.symmetric(horizontal: 20);
@@ -88,7 +88,7 @@ class NavigationDrawerWidget extends StatelessWidget {
     switch (index) {
       case 1:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => TestView(),
+          builder: (context) => HomeView(),
         ));
         break;
       case 2:

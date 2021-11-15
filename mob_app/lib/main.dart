@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mob_app/views/test_view.dart';
+import 'package:mob_app/views/home_view.dart';
 import 'package:mob_app/views/login.dart';
 
 var primary_color = Color.fromRGBO(80, 100, 160, 1);

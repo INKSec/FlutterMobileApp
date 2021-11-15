@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mob_app/views/test_view.dart';
+import 'package:mob_app/views/home_view.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -31,7 +31,7 @@ class LoginView extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => TestView()));
+                                    builder: (context) => HomeView()));
                           },
                           child: const Padding(
                             padding: EdgeInsets.all(8.0),

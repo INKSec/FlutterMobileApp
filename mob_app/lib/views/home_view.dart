@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 
 import 'navigation_drawer.dart';
 
-class TestView extends StatefulWidget {
+class HomeView extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return TestViewState();
+    return HomeViewState();
   }
 }
 
-class TestViewState extends State<TestView> {
+class HomeViewState extends State<HomeView> {
   String? yeah;
 
   Future<String> _getYeah() {
@@ -40,23 +40,14 @@ class TestViewState extends State<TestView> {
             leading: (ModalRoute.of(context)?.canPop ?? false)
                 ? const BackButton()
                 : null, // Backbutton
-            title: const Text("Test View")),
+            title: const Text("Startseite")),
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(120.0),
             child: ListView(
               children: [
-                create_list_entry("This"),
-                create_list_entry("is"),
-                create_list_entry("a"),
-                create_list_entry("test"),
-                create_list_entry(yeah ?? "null"),
-                ElevatedButton(
-                  child: const Text("yeah"),
-                  onPressed: () {
-                    _doUpdateYeah();
-                  },
-                )
+                create_list_entry("Home page"),
+                create_list_entry("Add more meaningful content here later.")
               ],
             ),
           ),
