@@ -8,6 +8,8 @@ import 'package:mob_app/views/mein_verein.dart';
 import 'package:mob_app/views/news.dart';
 import 'package:mob_app/views/home_view.dart';
 
+import 'package:mob_app/views/newsApp/article_view.dart';
+
 class NavigationDrawerWidget extends StatelessWidget {
   final padding = const EdgeInsets.symmetric(horizontal: 20);
 
@@ -41,6 +43,7 @@ class NavigationDrawerWidget extends StatelessWidget {
             buildMenuItem(
               text: 'Gästebuch',
               icon: Icons.book,
+              onClicked: () => selectedItem(context, 4),
             ),
             const SizedBox(height: 16),
             const Divider(color: Colors.white70),
@@ -58,6 +61,7 @@ class NavigationDrawerWidget extends StatelessWidget {
             buildMenuItem(
               text: 'NewsApi',
               icon: Icons.security,
+              onClicked: () => selectedItem(context, 5),
             ),
           ],
         ),
@@ -93,7 +97,7 @@ class NavigationDrawerWidget extends StatelessWidget {
         break;
       case 2:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => const NewsPage(),
+          builder: (context) => Artikel(),
         ));
         break;
       case 3:
@@ -101,6 +105,16 @@ class NavigationDrawerWidget extends StatelessWidget {
           builder: (context) => const MeinVerein(),
         ));
         break;
+      case 4:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => Artikel(),
+        ));
+        break;
+      /*case 5:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => Artikel(),
+        ));
+        break;*/
     }
   }
 }
