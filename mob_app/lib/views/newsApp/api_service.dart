@@ -11,7 +11,7 @@ class ApiService {
 // HTTP request
 
   Future<List<Article>> getArticle() async {
-    Response res = await get(endPointUrl);
+    Response res = await get(Uri.parse(endPointUrl));
 
     if (res.statusCode == 200) {
       Map<String, dynamic> json = jsonDecode(res.body);
