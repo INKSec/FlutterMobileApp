@@ -24,7 +24,7 @@ test:
     - export PATH="$PATH":"$HOME/.pub-cache/bin"
   script:
     - cd mob_app
-    - flutter test --no-sound-null-safety --machine --coverage | tojunit -o report.xml
+    - flutter test --machine --coverage | tojunit -o report.xml
     - lcov --summary coverage/lcov.info
     - genhtml coverage/lcov.info --output=coverage
   coverage: '/lines\.*: \d+\.\d+\%/'
