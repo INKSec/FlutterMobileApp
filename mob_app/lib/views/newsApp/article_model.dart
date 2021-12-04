@@ -25,7 +25,6 @@ class Article {
       required this.content});
 
   factory Article.fromJson(Map<String, dynamic> json) {
-    print(json);
     return Article(
       source: Source.fromJson(json['source']),
       author: json['author'] as String?,
