@@ -6,13 +6,13 @@ import 'news_api.dart';
 
 class Article {
   Source source;
-  String author;
+  String? author;
   String title;
   String description;
   String url;
   String urlToImage;
   String publishedAt;
-  String content;
+  String? content;
 
   Article(
       {required this.source,
@@ -25,15 +25,16 @@ class Article {
       required this.content});
 
   factory Article.fromJson(Map<String, dynamic> json) {
+    print(json);
     return Article(
       source: Source.fromJson(json['source']),
-      author: json['author'] as String,
+      author: json['author'] as String?,
       title: json['title'] as String,
       description: json['description'] as String,
       url: json['url'] as String,
       urlToImage: json['urlToImage'] as String,
       publishedAt: json['publishedAt'] as String,
-      content: json['content'] as String,
+      content: json['content'] as String?,
     );
   }
 }
