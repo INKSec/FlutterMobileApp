@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:mob_app/auth/auth_provider.dart';
 import 'package:mob_app/auth/providers/dummy_provider.dart';
+import 'package:mob_app/auth/providers/openid_provider.dart';
 import 'package:mob_app/views/home_view.dart';
 
 class LoginView extends StatelessWidget {
-  final AuthProvider _authProvider = DummyAuthProvider() as AuthProvider;
+  //final AuthProvider _authProvider = DummyAuthProvider() as AuthProvider;
+  final AuthProvider _authProvider = OpenIDProvider(
+      clientId: "81RRjLMem3ASRqzNI1xrnUkPELofcIAusPkjyk4Q",
+      issuerUri: Uri.parse("http://192.168.1.232/"),
+      scopes: ["openid"]);
   final GlobalKey<FormFieldState> _loginFormUserKey =
       GlobalKey<FormFieldState>();
   final GlobalKey<FormFieldState> _loginFormPasswordKey =
