@@ -4,6 +4,10 @@ import 'package:openid_client/openid_client.dart';
 import 'package:openid_client/openid_client_io.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+/// A User authenticated with an OpenID Connect Provider.
+/// User information is parsed from a Credentail object
+/// instead of manually supplied (see [OpenIDUser.fromCredentials]).
+/// The Credential instance is also available through [credential].
 class OpenIDUser extends AuthenticatedUser {
   late Credential _credential;
   set credential(Credential value) {
@@ -30,11 +34,17 @@ class OpenIDUser extends AuthenticatedUser {
   }
 }
 
+/// A class for authenticating with an OpenID Connect Provider.
 class OpenIDProvider extends AuthProvider {
   final String clientId;
   late List<String> _scopes;
   late Future<Issuer> issuer;
 
+  /// Constructor for OpenIDProvider.
+  /// [clientId] is the client ID for the OpenID Connect Provider.
+  /// [scopes] is a list of scopes to request from the provider.
+  /// [issuer] is the URL of the OpenID Connect Provider.
+  /// The [issuer] is resolved asynchronously using OIDC discovery.
   OpenIDProvider(
       {required this.clientId,
       required Uri issuerUri,
