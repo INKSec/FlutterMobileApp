@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mob_app/auth/auth_provider.dart';
-import 'package:mob_app/auth/auth_user.dart';
+import 'package:mob_app/auth/providers/dummy_provider.dart';
 import 'package:mob_app/views/home_view.dart';
 
 class LoginView extends StatelessWidget {
