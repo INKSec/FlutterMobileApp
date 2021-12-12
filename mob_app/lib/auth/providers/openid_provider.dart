@@ -64,8 +64,7 @@ class OpenIDProvider extends AuthProvider {
     // Further, it breaks the stack frame coherency making it more or less
     // impossible to actually debug the code. I am starting to understand why
     // Darts stack traces tend to be so utterly useless...
-    // Look at Pythons asyncio on how to implement this correctly.
-    // I am done.
+    // Look at lib/task.dart for a better solution.
     issuer = Task<Issuer>(Issuer.discover(issuerUri));
 
     _scopes = scopes;
