@@ -3,6 +3,7 @@ import 'package:mob_app/auth/auth_provider.dart';
 import 'package:mob_app/auth/providers/dummy_provider.dart';
 import 'package:mob_app/auth/providers/openid_provider.dart';
 import 'package:mob_app/views/home_view.dart';
+import 'package:mob_app/globals.dart' as globals;
 
 class LoginView extends StatelessWidget {
   //final AuthProvider _authProvider = DummyAuthProvider() as AuthProvider;
@@ -76,7 +77,7 @@ class LoginView extends StatelessWidget {
     //try to log in
     try {
       final user = await _authProvider.login(username, password);
-      print("Logged in as ${user.name}");
+      globals.user = user;
     } catch (e) {
       //if login fails, show an error message
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(

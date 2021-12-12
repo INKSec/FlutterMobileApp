@@ -20,4 +20,10 @@ class AuthenticatedUser extends User {
   AuthenticatedUser({required name, required id, required token, email})
       : _token = token,
         super(name: name, id: id, email: email);
+
+  @override
+  String toString() {
+    // TODO: implement toString
+    return _name;
+  }
 }

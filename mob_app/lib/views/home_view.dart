@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 
 import 'navigation_drawer.dart';
+import 'package:mob_app/globals.dart' as globals;
 
 class HomeView extends StatefulWidget {
   @override
@@ -46,6 +47,7 @@ class HomeViewState extends State<HomeView> {
             padding: const EdgeInsets.all(120.0),
             child: ListView(
               children: [
+                create_list_entry("Welcome ${globals.user}"),
                 create_list_entry("Home page"),
                 create_list_entry("Add more meaningful content here later.")
               ],
