@@ -1,5 +1,6 @@
 import 'package:mob_app/auth/auth_provider.dart';
 import 'package:mob_app/auth/auth_user.dart';
+import 'package:mob_app/task.dart';
 import 'package:openid_client/openid_client.dart';
 import 'package:openid_client/openid_client_io.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -38,7 +39,7 @@ class OpenIDUser extends AuthenticatedUser {
 class OpenIDProvider extends AuthProvider {
   final String clientId;
   late List<String> _scopes;
-  late Future<Issuer> issuer;
+  late Task<Issuer> issuer;
 
   /// Constructor for OpenIDProvider.
   /// [clientId] is the client ID for the OpenID Connect Provider.
@@ -50,7 +51,23 @@ class OpenIDProvider extends AuthProvider {
       required Uri issuerUri,
       List<String> scopes = const []})
       : super() {
-    issuer = Issuer.discover(issuerUri);
+    // Rant time.
+    // This is wrong. Dart is doing this wrong.
+    // What is *supposed* to happen when an exception occurs inside an
+    // asynchronous task is that the exception is thrown *after* the task
+    // has completed.
+    // This is not what is happening.
+    // Instead the exception is thrown *instantly* the second it occurs.
+    // This makes it very difficult to defer the exception handling to a
+    // point in time that is more convenient, for example whenever we actually
+    // need the result.
+    // Further, it breaks the stack frame coherency making it more or less
+    // impossible to actually debug the code. I am starting to understand why
+    // Darts stack traces tend to be so utterly useless...
+    // Look at Pythons asyncio on how to implement this correctly.
+    // I am done.
+    issuer = Task<Issuer>(Issuer.discover(issuerUri));
+
     _scopes = scopes;
   }
 
@@ -59,7 +76,7 @@ class OpenIDProvider extends AuthProvider {
     // TODO: OIDC does not require username and password.
     // Consider changing the interface to allow for this.
 
-    final client = Client(await issuer, clientId, clientSecret: '');
+    final client = Client(await issuer.await2(), clientId, clientSecret: '');
     _launch(String uri) async {
       if (await canLaunch(uri)) {
         await launch(uri, forceWebView: true);
