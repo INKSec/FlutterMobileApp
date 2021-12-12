@@ -75,7 +75,7 @@ class OpenIDProvider extends AuthProvider {
     // TODO: OIDC does not require username and password.
     // Consider changing the interface to allow for this.
 
-    final client = Client(await issuer.await2(), clientId, clientSecret: '');
+    final client = Client(await issuer(), clientId, clientSecret: '');
     _launch(String uri) async {
       if (await canLaunch(uri)) {
         await launch(uri, forceWebView: true);

@@ -18,7 +18,7 @@ class Task<T> {
     });
   }
 
-  Future<T> await2() async {
+  Future<T> call() async {
     await _future;
     if (_exception != null) {
       throw _exception as Exception;
