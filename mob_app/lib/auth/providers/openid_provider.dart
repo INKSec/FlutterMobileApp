@@ -15,9 +15,10 @@ class OpenIDUser extends AuthenticatedUser {
 
   factory OpenIDUser.fromCredentials(Credential credential) {
     OpenIDUser user = OpenIDUser(
-        credential.toJson()['token'],
+        credential.toJson()['token']['accessToken'] as String,
         credential.idToken.claims.subject,
         credential.idToken.claims.nickname ??
+            credential.idToken.claims.name ??
             credential.idToken.claims.email ??
             credential.idToken.claims.subject);
 
@@ -61,7 +62,13 @@ class OpenIDProvider extends AuthProvider {
         Authenticator(client, scopes: _scopes, urlLancher: _launch);
     final result = await authenticator.authorize();
 
-    closeWebView();
+    try {
+      await closeWebView();
+    } catch (e) {
+      //this can happen on certain platforms where
+      //closing webviews is not supported.
+      //We can safely ignore this error.
+    }
 
     return OpenIDUser.fromCredentials(result);
   }

@@ -8,7 +8,7 @@ class LoginView extends StatelessWidget {
   //final AuthProvider _authProvider = DummyAuthProvider() as AuthProvider;
   final AuthProvider _authProvider = OpenIDProvider(
       clientId: "81RRjLMem3ASRqzNI1xrnUkPELofcIAusPkjyk4Q",
-      issuerUri: Uri.parse("http://192.168.1.232/"),
+      issuerUri: Uri.parse("http://192.168.1.232:8001/issuer"),
       scopes: ["openid"]);
   final GlobalKey<FormFieldState> _loginFormUserKey =
       GlobalKey<FormFieldState>();
@@ -76,6 +76,7 @@ class LoginView extends StatelessWidget {
     //try to log in
     try {
       final user = await _authProvider.login(username, password);
+      print("Logged in as ${user.name}");
     } catch (e) {
       //if login fails, show an error message
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
