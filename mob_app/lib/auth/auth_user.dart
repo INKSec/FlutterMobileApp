@@ -11,6 +11,12 @@ class User {
       : _name = name,
         _id = id,
         _email = email;
+
+  @override
+  String toString() {
+    // TODO: implement toString
+    return _name;
+  }
 }
 
 class AuthenticatedUser extends User {
@@ -20,10 +26,4 @@ class AuthenticatedUser extends User {
   AuthenticatedUser({required name, required id, required token, email})
       : _token = token,
         super(name: name, id: id, email: email);
-
-  @override
-  String toString() {
-    // TODO: implement toString
-    return _name;
-  }
 }
