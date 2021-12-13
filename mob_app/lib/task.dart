@@ -4,7 +4,7 @@
 /// the proper way of doing it.
 /// NOTE: If the result is never accessed, the exception is lost.
 class Task<T> {
-  Future<T> _future;
+  final Future<T> _future;
   late T? _result;
   late Exception? _exception;
 

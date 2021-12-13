@@ -10,8 +10,8 @@ import 'package:url_launcher/url_launcher.dart';
 /// instead of manually supplied (see [OpenIDUser.fromCredentials]).
 /// The Credential instance is also available through [credential].
 class OpenIDUser extends AuthenticatedUser {
-  late Credential _credential;
-  late UserInfo _userInfo;
+  late final Credential _credential;
+  late final UserInfo _userInfo;
   set credential(Credential value) {
     _credential = value;
   }

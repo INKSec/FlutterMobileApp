@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mob_app/auth/auth_user.dart';
 import 'package:mob_app/auth/auth_provider.dart';
 import 'package:mob_app/auth/providers/dummy_provider.dart';
-import 'package:mob_app/views/home_view.dart';
 import 'package:mob_app/views/login/login_base.dart';
 
 class DummyLoginView extends AbstractLoginView {
@@ -19,18 +18,17 @@ class DummyLoginView extends AbstractLoginView {
 
   @override
   Widget buildLoginView(BuildContext context) {
-    // TODO: implement buildLoginView
     return Container(
         padding: const EdgeInsets.only(left: 100, right: 100),
         child: Form(
           child: Column(children: [
             TextFormField(
               key: _loginFormUserKey,
-              decoration: InputDecoration(labelText: "Username"),
+              decoration: const InputDecoration(labelText: "Username"),
             ),
             TextFormField(
               key: _loginFormPasswordKey,
-              decoration: InputDecoration(labelText: "Password"),
+              decoration: const InputDecoration(labelText: "Password"),
               obscureText: true,
               obscuringCharacter: "*",
             ),

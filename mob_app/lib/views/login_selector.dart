@@ -4,6 +4,7 @@ import 'package:mob_app/views/login/login_oidc_generic.dart';
 
 class LoginSelectorView extends StatelessWidget {
   final void Function(BuildContext) createNextWidget;
+  // ignore: prefer_const_constructors_in_immutables
   LoginSelectorView({Key? key, required this.createNextWidget})
       : super(key: key);
 

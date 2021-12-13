@@ -11,10 +11,12 @@ class DummyAuthProvider extends AuthProvider {
 
   DummyAuthProvider();
 
+  @override
   Future<AuthenticatedUser> login(String name, String password) async {
     return user;
   }
 
+  @override
   Future<void> logout(AuthenticatedUser user) async {
     return;
   }
