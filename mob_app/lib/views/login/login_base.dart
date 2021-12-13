@@ -9,8 +9,8 @@ import 'package:mob_app/globals.dart' as globals;
 /// Implementation specific logic must be implemented for [buildLoginView] and
 /// [loginProvider].
 abstract class AbstractLoginView extends StatelessWidget {
-  late AuthProvider authProvider;
-  late Function nextWidget;
+  late final AuthProvider authProvider;
+  late final Function nextWidget;
 
   AbstractLoginView(
       {Key? key,
