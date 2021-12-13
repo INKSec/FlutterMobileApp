@@ -38,6 +38,7 @@ dependencies:
   openid_client: ^0.4.3
   url_launcher: ^6.0.17
 
+  hexcolor: ^2.0.5
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -49,6 +50,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
   fluentui_system_icons: ^1.1.145
+  test: ^1.17.10
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -1,5 +1,5 @@
 class Source {
-  late String id;
+  late String? id;
   late String name;
 
   Source({required this.id, required this.name});
