@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:mob_app/views/navigation_drawer.dart';
 import 'package:mob_app/views/newsApp/api_service.dart';
 import 'package:mob_app/views/newsApp/list_view_news.dart';
-
+import 'package:hexcolor/hexcolor.dart';
 import 'article_model.dart';
 
+// ignore: must_be_immutable
 class Artikel extends StatelessWidget {
   Artikel({Key? key}) : super(key: key);
   ApiService client = ApiService();
+
   @override
   Widget build(BuildContext context) => Scaffold(
         endDrawer: const NavigationDrawerWidget(),
@@ -16,9 +18,14 @@ class Artikel extends StatelessWidget {
           leading: (ModalRoute.of(context)?.canPop ?? false)
               ? const BackButton()
               : null, // Backbutton
-          title: const Text('Fußballnews'),
+          title: Text(
+            'Fußballnews',
+            style: TextStyle(color: HexColor("3C1642")),
+          ),
+
           centerTitle: true,
-          backgroundColor: Colors.red,
+          // Hintergrund Header
+          backgroundColor: HexColor("#AFFC41"),
         ),
         body: FutureBuilder(
           future: client.getArticle(),
@@ -36,6 +43,8 @@ class Artikel extends StatelessWidget {
             );
           },
         ),
+        // Hintergrundfarbe Komplett
+        backgroundColor: HexColor("#3C1642"),
       );
 }
 

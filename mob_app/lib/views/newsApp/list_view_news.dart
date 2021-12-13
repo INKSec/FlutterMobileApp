@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mob_app/views/newsApp/article_model.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 // Oberfläche der ListView News
 Widget listViewNews(Article article) {
@@ -9,15 +10,10 @@ Widget listViewNews(Article article) {
     margin: const EdgeInsets.all(12.0),
     padding: const EdgeInsets.all(8),
     decoration: BoxDecoration(
-        color: Colors.grey,
-        borderRadius: BorderRadius.circular(18.0),
-        boxShadow: const [
-          // Schatten der größeren Box
-          BoxShadow(
-            color: Colors.yellow,
-            blurRadius: 3.0,
-          )
-        ]),
+      // Artikelbox Hintergrund
+      color: HexColor("AFFC41"),
+      borderRadius: BorderRadius.circular(18.0),
+    ),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,13 +22,13 @@ Widget listViewNews(Article article) {
         Container(
           padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
-            color: Colors.grey,
-            borderRadius: BorderRadius.circular(16),
+            color: HexColor("AFFC41"),
           ),
           child: Text(
             article.source.name,
-            style: const TextStyle(
-                color: Colors.white,
+            style: TextStyle(
+                // Farbe Überschrift
+                color: HexColor("#3C1642"),
                 fontWeight: FontWeight.bold,
                 fontStyle: FontStyle.italic,
                 fontSize: 18,
@@ -61,7 +57,11 @@ Widget listViewNews(Article article) {
         ),
         Text(
           article.title,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16.0,
+              // Unterer Text Farbe
+              color: HexColor("##3C1642")),
         )
       ],
     ),
