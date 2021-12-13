@@ -56,7 +56,7 @@ class OpenIDProvider extends AuthProvider {
   OpenIDProvider(
       {required this.clientId,
       required Uri issuerUri,
-      List<String> scopes = const []})
+      List<String> scopes = const ["openid"]})
       : super() {
     // Rant time.
     // This is wrong. Dart is doing this wrong.

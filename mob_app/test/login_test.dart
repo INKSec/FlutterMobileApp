@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mob_app/views/login.dart';
+import 'package:mob_app/views/login_selector.dart';
 
 Widget createLoginView() => MaterialApp(
-      home: LoginView(),
+      home: LoginSelectorView(createNextWidget: (BuildContext context) => null),
     );
 
 void main() {
