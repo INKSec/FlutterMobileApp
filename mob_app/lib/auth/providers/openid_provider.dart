@@ -11,25 +11,32 @@ import 'package:url_launcher/url_launcher.dart';
 /// The Credential instance is also available through [credential].
 class OpenIDUser extends AuthenticatedUser {
   late Credential _credential;
+  late UserInfo _userInfo;
   set credential(Credential value) {
     _credential = value;
+  }
+
+  set userInfo(UserInfo value) {
+    _userInfo = value;
   }
 
   OpenIDUser(String token, String id, String name)
       : super(token: token, id: id, name: name);
 
-  factory OpenIDUser.fromCredentials(Credential credential) {
+  factory OpenIDUser.fromCredentials(Credential credential, UserInfo userInfo) {
     OpenIDUser user = OpenIDUser(
         credential.toJson()['token']['accessToken'] as String,
         credential.idToken.claims.subject,
-        credential.idToken.claims.nickname ??
-            credential.idToken.claims.name ??
-            credential.idToken.claims.email ??
-            credential.idToken.claims.subject);
+        userInfo.nickname ??
+            userInfo.preferredUsername ??
+            userInfo.name ??
+            userInfo.email ??
+            userInfo.subject);
 
     //TODO: This is not ideal, might be a better way of doing this
     //by creating an abstract user class.
     user.credential = credential;
+    user.userInfo = userInfo;
 
     return user;
   }
@@ -95,8 +102,8 @@ class OpenIDProvider extends AuthProvider {
       //closing webviews is not supported.
       //We can safely ignore this error.
     }
-
-    return OpenIDUser.fromCredentials(result);
+    UserInfo userInfo = await result.getUserInfo();
+    return OpenIDUser.fromCredentials(result, userInfo);
   }
 
   @override
