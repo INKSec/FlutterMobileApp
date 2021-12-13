@@ -1,7 +1,4 @@
 import 'dart:core';
-
-import 'package:mob_app/views/newsApp/news_api.dart';
-
 import 'news_api.dart';
 
 class Article {
