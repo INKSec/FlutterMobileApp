@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mob_app/views/login/login_dummy.dart';
+import 'package:mob_app/views/login/login_local_user.dart';
 import 'package:mob_app/views/login/login_oidc_generic.dart';
 
 class LoginSelectorView extends StatelessWidget {
@@ -59,11 +59,11 @@ class LoginSelectorView extends StatelessWidget {
       'Google': (context) => GenericOpenIDLoginView(
           issuerUri: Uri.parse("https://accounts.google.com"),
           clientId:
-              "688230163700-gcofdmu5l7646m6n93rs91gpefuf6tia.apps.googleusercontent.com",
-          clientSecret: "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",
+              "661233299869-647c4hugbvell2osbksdsc8m8mim1kjr.apps.googleusercontent.com",
+          clientSecret: "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",
           createNextWidget: createNextWidget),
-      'Anonymous': (context) =>
-          DummyLoginView(createNextWidget: createNextWidget),
+      'Local User': (context) =>
+          LocalUserLoginView(createNextWidget: createNextWidget),
     };
   }
 }
