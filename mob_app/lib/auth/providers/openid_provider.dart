@@ -45,6 +45,7 @@ class OpenIDUser extends AuthenticatedUser {
 /// A class for authenticating with an OpenID Connect Provider.
 class OpenIDProvider extends AuthProvider {
   final String clientId;
+  final String clientSecret;
   late List<String> _scopes;
   late Task<Issuer> issuer;
 
@@ -55,6 +56,7 @@ class OpenIDProvider extends AuthProvider {
   /// The [issuer] is resolved asynchronously using OIDC discovery.
   OpenIDProvider(
       {required this.clientId,
+      this.clientSecret = "",
       required Uri issuerUri,
       List<String> scopes = const ["openid"]})
       : super() {
@@ -82,7 +84,7 @@ class OpenIDProvider extends AuthProvider {
     // TODO: OIDC does not require username and password.
     // Consider changing the interface to allow for this.
 
-    final client = Client(await issuer(), clientId, clientSecret: '');
+    final client = Client(await issuer(), clientId, clientSecret: clientSecret);
     _launch(String uri) async {
       if (await canLaunch(uri)) {
         await launch(uri, forceWebView: true);
