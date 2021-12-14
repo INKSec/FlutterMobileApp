@@ -17,6 +17,12 @@ class GenericOpenIDLoginView extends AbstractLoginView {
 
   @override
   Widget buildLoginView(BuildContext context) {
+    //immediately try to login
+    doLogin(context).then((success) {
+      if (success) {
+        routePostLogin(context);
+      }
+    });
     return Container(
         padding: const EdgeInsets.only(left: 100, right: 100),
         child: Form(
