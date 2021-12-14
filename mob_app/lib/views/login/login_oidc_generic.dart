@@ -9,11 +9,15 @@ class GenericOpenIDLoginView extends AbstractLoginView {
       {Key? key,
       required Uri issuerUri,
       required String clientId,
+      String clientSecret = "",
       required Function createNextWidget})
       : super(
             key: key,
             createNextWidget: createNextWidget,
-            provider: OpenIDProvider(clientId: clientId, issuerUri: issuerUri));
+            provider: OpenIDProvider(
+                clientId: clientId,
+                issuerUri: issuerUri,
+                clientSecret: clientSecret));
 
   @override
   Widget buildLoginView(BuildContext context) {

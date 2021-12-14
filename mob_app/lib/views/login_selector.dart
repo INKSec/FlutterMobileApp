@@ -52,9 +52,15 @@ class LoginSelectorView extends StatelessWidget {
           issuerUri: Uri.parse("http://192.168.1.232:8001/issuer"),
           clientId: "81RRjLMem3ASRqzNI1xrnUkPELofcIAusPkjyk4Q",
           createNextWidget: createNextWidget),
-      'OIDC Public Test Domain': (context) => GenericOpenIDLoginView(
-          issuerUri: Uri.parse("http://136.243.14.112/issuer"),
-          clientId: "oF8h8CtSrBOoSpKVTD83hcMtzgrZAGAmFmVtpoPA",
+      // 'OIDC Public Test Domain': (context) => GenericOpenIDLoginView(
+      //     issuerUri: Uri.parse("http://136.243.14.112/issuer"),
+      //     clientId: "oF8h8CtSrBOoSpKVTD83hcMtzgrZAGAmFmVtpoPA",
+      //     createNextWidget: createNextWidget),
+      'Google': (context) => GenericOpenIDLoginView(
+          issuerUri: Uri.parse("https://accounts.google.com"),
+          clientId:
+              "688230163700-gcofdmu5l7646m6n93rs91gpefuf6tia.apps.googleusercontent.com",
+          clientSecret: "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",
           createNextWidget: createNextWidget),
       'Anonymous': (context) =>
           DummyLoginView(createNextWidget: createNextWidget),
