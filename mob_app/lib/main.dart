@@ -1,11 +1,15 @@
 // @dart=2.9
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mob_app/views/home_view.dart';
 import 'package:mob_app/views/login_selector.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-var primary_color = Color.fromRGBO(80, 100, 160, 1);
-
-void main() {
+var primaryColor = const Color.fromRGBO(80, 100, 160, 1);
+// Bei Appstart wird jetzt Firebase gestartet
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -30,14 +34,14 @@ class MyApp extends StatelessWidget {
         //primarySwatch: MaterialColor(primary_color.value, {1: primary_color}),
         primarySwatch: Colors.blue,
         colorScheme: ColorScheme.dark(
-          primary: primary_color,
-          surface: primary_color,
+          primary: primaryColor,
+          surface: primaryColor,
         ),
         // backgroundColor: primary_color
       ),
       //home: const MyHomePage(title: 'Flutter Demo Home Page'),
       home: LoginSelectorView(
-          createNextWidget: (BuildContext context) => HomeView()),
+          createNextWidget: (BuildContext context) => const HomeView()),
     );
   }
 }
