@@ -23,31 +23,25 @@ class _GaesteViewState extends State<GaesteView> {
   Widget eintraege() {
     return Container(
       child: myStream != null
-          ? SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  StreamBuilder(
-                    stream: myStream,
-                    builder: (context, AsyncSnapshot snapshot) {
-                      if (snapshot.data == null) {
-                        return const CircularProgressIndicator();
-                      } // wegen nullfehler, position egal
-                      return ListView.builder(
-                          physics: const BouncingScrollPhysics(
-                              parent: AlwaysScrollableScrollPhysics()),
-                          // ohne funktioniert scrollen nicht
-                          itemCount: snapshot.data.docs.length,
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            return Containerlein(
-                                imgUrl: snapshot.data.docs[index]["imgUrl"],
-                                beschreibung: snapshot.data.docs[index]
-                                    ["Beschreibung"]);
-                          });
-                    },
-                  )
-                ],
-              ),
+          ? StreamBuilder(
+              stream: myStream,
+              builder: (context, AsyncSnapshot snapshot) {
+                if (snapshot.data == null) {
+                  return const CircularProgressIndicator();
+                } // wegen nullfehler, position egal
+                return ListView.builder(
+                    physics: const BouncingScrollPhysics(
+                        parent: AlwaysScrollableScrollPhysics()),
+                    // ohne funktioniert scrollen nicht
+                    itemCount: snapshot.data.docs.length,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return Containerlein(
+                          imgUrl: snapshot.data.docs[index]["imgUrl"],
+                          beschreibung: snapshot.data.docs[index]
+                              ["Beschreibung"]);
+                    });
+              },
             )
           : Container(
               alignment: Alignment.center,
