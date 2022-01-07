@@ -4,10 +4,11 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mob_app/views/gaestebuch/view.dart';
 import 'package:mob_app/views/mein_verein.dart';
 import 'package:mob_app/views/news.dart';
 import 'package:mob_app/views/home_view.dart';
-
+import 'package:mob_app/views/gaestebuch/gaestebuch.dart';
 import 'package:mob_app/views/newsApp/article_view.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
@@ -107,7 +108,7 @@ class NavigationDrawerWidget extends StatelessWidget {
         break;
       case 4:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => Artikel(),
+          builder: (context) => const GaesteView(),
         ));
         break;
       /*case 5:
