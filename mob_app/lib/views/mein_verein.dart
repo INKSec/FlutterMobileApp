@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:mob_app/views/navigation_drawer.dart';
 
 class MeinVerein extends StatelessWidget {
-  const MeinVerein({Key? key}) : super(key: key);
+  final FirebaseFirestore? firestore;
+
+  const MeinVerein({Key? key, final this.firestore}) : super(key: key);
   @override
   Widget build(BuildContext context) => Scaffold(
         endDrawer: const NavigationDrawerWidget(),
@@ -20,8 +22,9 @@ class MeinVerein extends StatelessWidget {
         ),
         body: Center(
             child: StreamBuilder(
-          stream:
-              FirebaseFirestore.instance.collection('testliste').snapshots(),
+          stream: (firestore ?? FirebaseFirestore.instance)
+              .collection('testliste')
+              .snapshots(),
           builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (!snapshot.hasData) {
               return const Center(child: Text('Wer das liest ist schnell'));
