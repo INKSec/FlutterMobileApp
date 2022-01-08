@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:mob_app/auth/auth_provider.dart';
 import 'package:mob_app/auth/auth_user.dart';
@@ -44,11 +46,14 @@ abstract class AbstractLoginView extends StatelessWidget {
       // try to fetch userdata from database
       try {
         globals.userdata = await userStorageProvider.read(
-            user.id, (data) => UserData.deserialize(data)) as UserData;
+            user.id, (data) => UserData.deserialize(data, user.id)) as UserData;
+        log("Userdata loaded from database");
       } catch (e) {
+        log("No userdata found for user ${user.id}, creating new document");
         // if no userdata found, create new one
-        globals.userdata = UserData(user.name, "");
-        await userStorageProvider.create(globals.userdata as Storable);
+        globals.userdata = UserData(user.name, "", user.id);
+        log("Writing to database");
+        await userStorageProvider.create(globals.userdata!);
       }
     } catch (e) {
       //if login fails, show an error message
