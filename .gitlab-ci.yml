@@ -36,7 +36,7 @@ test:
       junit: mob_app/report.xml
 
 build:
-  stage: build
+  stage: deploy
   only:
     - main
   image: "cirrusci/flutter:$FLUTTER_VERSION"
