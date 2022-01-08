@@ -87,7 +87,7 @@ class OpenIDProvider extends AuthProvider {
     final client = Client(await issuer(), clientId, clientSecret: clientSecret);
     _launch(String uri) async {
       if (await canLaunch(uri) || true) {
-        await launch(uri, forceWebView: false);
+        await launch(uri, forceWebView: true);
       } else {
         throw 'Failed to open WebView for URI $uri';
       }

@@ -7,15 +7,18 @@ class UserData implements Storable {
   String displayName;
   String avatar;
 
-  UserData(this.displayName, this.avatar);
+  UserData(this.displayName, this.avatar, this.serial);
 
   @override
   Map<String, dynamic> serialize() {
-    // TODO: implement serialize
-    throw UnimplementedError();
+    return {
+      'displayName': displayName,
+      'avatar': avatar,
+    };
   }
 
-  static UserData deserialize(Map<String, dynamic> data) {
-    return UserData(data['displayName'] as String, data['avatar'] as String);
+  static UserData deserialize(Map<String, dynamic> data, dynamic serial) {
+    return UserData(
+        data['displayName'] as String, data['avatar'] as String, serial);
   }
 }

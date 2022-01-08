@@ -12,7 +12,7 @@ class FirestoreProvider extends AbstractStorageProvider {
 
   @override
   Future<void> create(Storable storable) async {
-    await firestore_collection.add(storable.serialize());
+    await firestore_collection.doc(storable.serial).set(storable.serialize());
   }
 
   @override
