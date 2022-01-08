@@ -1,6 +1,7 @@
 // @dart=2.9
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:mob_app/storage/providers/firestore_provider.dart';
 import 'package:mob_app/views/home_view.dart';
 import 'package:mob_app/views/login_selector.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -41,7 +42,8 @@ class MyApp extends StatelessWidget {
       ),
       //home: const MyHomePage(title: 'Flutter Demo Home Page'),
       home: LoginSelectorView(
-          createNextWidget: (BuildContext context) => const HomeView()),
+          createNextWidget: (BuildContext context) => const HomeView(),
+          storageProvider: FirestoreProvider(null, "UserData")),
     );
   }
 }

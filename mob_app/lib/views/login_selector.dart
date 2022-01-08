@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:mob_app/storage/storage_provider.dart';
 import 'package:mob_app/views/login/login_local_user.dart';
 import 'package:mob_app/views/login/login_oidc_generic.dart';
 
 class LoginSelectorView extends StatelessWidget {
   final void Function(BuildContext) createNextWidget;
+  final AbstractStorageProvider storageProvider;
   // ignore: prefer_const_constructors_in_immutables
-  LoginSelectorView({Key? key, required this.createNextWidget})
+  LoginSelectorView(
+      {Key? key,
+      required this.createNextWidget,
+      required AbstractStorageProvider this.storageProvider})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var navWidgets = _buildNavigatorWidgets(context);
+    var navWidgets = _buildNavigatorWidgets(context, storageProvider);
     if (navWidgets.length == 1) {
       // if there is only one widget, don't show the selector
       // and instead move on to the LoginView directly.
@@ -46,24 +51,27 @@ class LoginSelectorView extends StatelessWidget {
   }
 
   Map<String, Widget Function(dynamic)> _buildNavigatorWidgets(
-      BuildContext context) {
+      BuildContext context, AbstractStorageProvider storageProvider) {
     return {
       'OIDC': (context) => GenericOpenIDLoginView(
           issuerUri: Uri.parse("http://192.168.1.232:8001/issuer"),
           clientId: "81RRjLMem3ASRqzNI1xrnUkPELofcIAusPkjyk4Q",
-          createNextWidget: createNextWidget),
+          createNextWidget: createNextWidget,
+          storageProvider: storageProvider),
       // 'OIDC Public Test Domain': (context) => GenericOpenIDLoginView(
       //     issuerUri: Uri.parse("http://136.243.14.112/issuer"),
       //     clientId: "oF8h8CtSrBOoSpKVTD83hcMtzgrZAGAmFmVtpoPA",
       //     createNextWidget: createNextWidget),
       'Google': (context) => GenericOpenIDLoginView(
-          issuerUri: Uri.parse("https://accounts.google.com"),
-          clientId:
-              "661233299869-647c4hugbvell2osbksdsc8m8mim1kjr.apps.googleusercontent.com",
-          clientSecret: "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",
-          createNextWidget: createNextWidget),
-      'Local User': (context) =>
-          LocalUserLoginView(createNextWidget: createNextWidget),
+            issuerUri: Uri.parse("https://accounts.google.com"),
+            clientId:
+                "661233299869-647c4hugbvell2osbksdsc8m8mim1kjr.apps.googleusercontent.com",
+            clientSecret: "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",
+            createNextWidget: createNextWidget,
+            storageProvider: storageProvider,
+          ),
+      'Local User': (context) => LocalUserLoginView(
+          createNextWidget: createNextWidget, storageProvider: storageProvider),
     };
   }
 }
