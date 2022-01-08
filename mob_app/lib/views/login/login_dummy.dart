@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mob_app/auth/auth_user.dart';
 import 'package:mob_app/auth/auth_provider.dart';
 import 'package:mob_app/auth/providers/dummy_provider.dart';
+import 'package:mob_app/storage/storage_provider.dart';
 import 'package:mob_app/views/login/login_base.dart';
 
 class DummyLoginView extends AbstractLoginView {
@@ -10,11 +11,15 @@ class DummyLoginView extends AbstractLoginView {
   final GlobalKey<FormFieldState> _loginFormPasswordKey =
       GlobalKey<FormFieldState>();
 
-  DummyLoginView({Key? key, required Function createNextWidget})
+  DummyLoginView(
+      {Key? key,
+      required Function createNextWidget,
+      required AbstractStorageProvider storageProvider})
       : super(
             key: key,
             provider: DummyAuthProvider(),
-            createNextWidget: createNextWidget);
+            createNextWidget: createNextWidget,
+            storageProvider: storageProvider);
 
   @override
   Widget buildLoginView(BuildContext context) {

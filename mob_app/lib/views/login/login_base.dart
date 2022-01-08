@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mob_app/auth/auth_provider.dart';
 import 'package:mob_app/auth/auth_user.dart';
 import 'package:mob_app/globals.dart' as globals;
+import 'package:mob_app/models/userdata.dart';
+import 'package:mob_app/storage/storage_provider.dart';
 
 /// Abstract Login View class.
 ///
@@ -11,14 +13,17 @@ import 'package:mob_app/globals.dart' as globals;
 abstract class AbstractLoginView extends StatelessWidget {
   late final AuthProvider authProvider;
   late final Function nextWidget;
+  late final AbstractStorageProvider userStorageProvider;
 
   AbstractLoginView(
       {Key? key,
       required AuthProvider provider,
-      required Function createNextWidget})
+      required Function createNextWidget,
+      required AbstractStorageProvider storageProvider})
       : super(key: key) {
     authProvider = provider;
     nextWidget = createNextWidget;
+    userStorageProvider = storageProvider;
   }
 
   /// Embedded login view builder.
@@ -36,6 +41,9 @@ abstract class AbstractLoginView extends StatelessWidget {
     try {
       final user = await loginProvider(authProvider);
       globals.user = user; //save user
+      // try to fetch userdata from database
+      globals.userdata = await userStorageProvider.read(
+          user.id, (data) => UserData.deserialize(data)) as UserData;
     } catch (e) {
       //if login fails, show an error message
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(

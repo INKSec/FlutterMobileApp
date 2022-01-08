@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mob_app/auth/auth_user.dart';
 import 'package:mob_app/auth/auth_provider.dart';
 import 'package:mob_app/auth/providers/openid_provider.dart';
+import 'package:mob_app/storage/storage_provider.dart';
 import 'package:mob_app/views/login/login_base.dart';
 
 class GenericOpenIDLoginView extends AbstractLoginView {
@@ -10,14 +11,16 @@ class GenericOpenIDLoginView extends AbstractLoginView {
       required Uri issuerUri,
       required String clientId,
       String clientSecret = "",
-      required Function createNextWidget})
+      required Function createNextWidget,
+      required AbstractStorageProvider storageProvider})
       : super(
             key: key,
             createNextWidget: createNextWidget,
             provider: OpenIDProvider(
                 clientId: clientId,
                 issuerUri: issuerUri,
-                clientSecret: clientSecret));
+                clientSecret: clientSecret),
+            storageProvider: storageProvider);
 
   @override
   Widget buildLoginView(BuildContext context) {

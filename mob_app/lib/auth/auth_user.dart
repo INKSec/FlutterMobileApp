@@ -1,3 +1,5 @@
+import 'package:mob_app/storage/storage_provider.dart';
+
 class User {
   final String _name;
   final dynamic _id;
@@ -14,7 +16,6 @@ class User {
 
   @override
   String toString() {
-    // TODO: implement toString
     return _name;
   }
 }
