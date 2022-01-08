@@ -42,8 +42,14 @@ abstract class AbstractLoginView extends StatelessWidget {
       final user = await loginProvider(authProvider);
       globals.user = user; //save user
       // try to fetch userdata from database
-      globals.userdata = await userStorageProvider.read(
-          user.id, (data) => UserData.deserialize(data)) as UserData;
+      try {
+        globals.userdata = await userStorageProvider.read(
+            user.id, (data) => UserData.deserialize(data)) as UserData;
+      } catch (e) {
+        // if no userdata found, create new one
+        globals.userdata = UserData(user.name, "");
+        await userStorageProvider.create(globals.userdata as Storable);
+      }
     } catch (e) {
       //if login fails, show an error message
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
