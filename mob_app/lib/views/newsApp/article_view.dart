@@ -25,7 +25,7 @@ class Artikel extends StatelessWidget {
 
           centerTitle: true,
           // Hintergrund Header
-          backgroundColor: HexColor("#AFFC41"),
+          backgroundColor: HexColor("#ADD8E6"),
         ),
         body: FutureBuilder(
           future: client.getArticle(),
@@ -44,7 +44,7 @@ class Artikel extends StatelessWidget {
           },
         ),
         // Hintergrundfarbe Komplett
-        backgroundColor: HexColor("#3C1642"),
+        backgroundColor: HexColor("#ADD8E6"),
       );
 }
 

@@ -11,7 +11,7 @@ Widget listViewNews(Article article) {
     padding: const EdgeInsets.all(8),
     decoration: BoxDecoration(
       // Artikelbox Hintergrund
-      color: HexColor("AFFC41"),
+      color: HexColor("00008b"),
       borderRadius: BorderRadius.circular(18.0),
     ),
     child: Column(
@@ -22,13 +22,13 @@ Widget listViewNews(Article article) {
         Container(
           padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
-            color: HexColor("AFFC41"),
+            color: HexColor("#00008b"),
           ),
           child: Text(
             article.source.name,
             style: TextStyle(
                 // Farbe Überschrift
-                color: HexColor("#3C1642"),
+                color: HexColor("#ADD8E6"),
                 fontWeight: FontWeight.bold,
                 fontStyle: FontStyle.italic,
                 fontSize: 18,
@@ -61,7 +61,7 @@ Widget listViewNews(Article article) {
               fontWeight: FontWeight.bold,
               fontSize: 16.0,
               // Unterer Text Farbe
-              color: HexColor("##3C1642")),
+              color: HexColor("#ADD8E6")),
         )
       ],
     ),

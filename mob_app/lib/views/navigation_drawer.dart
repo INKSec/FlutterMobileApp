@@ -5,6 +5,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mob_app/views/gaestebuch/view.dart';
+import 'package:mob_app/views/impressum.dart';
 import 'package:mob_app/views/mein_verein.dart';
 import 'package:mob_app/views/news.dart';
 import 'package:mob_app/views/home_view.dart';
@@ -57,13 +58,9 @@ class NavigationDrawerWidget extends StatelessWidget {
             buildMenuItem(
               text: 'Impressum',
               icon: Icons.text_fields,
-            ),
-            const SizedBox(height: 20),
-            buildMenuItem(
-              text: 'NewsApi',
-              icon: Icons.security,
               onClicked: () => selectedItem(context, 5),
             ),
+            const SizedBox(height: 20),
           ],
         ),
       ),
@@ -93,7 +90,7 @@ class NavigationDrawerWidget extends StatelessWidget {
     switch (index) {
       case 1:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => HomeView(),
+          builder: (context) => const HomeView(),
         ));
         break;
       case 2:
@@ -111,11 +108,11 @@ class NavigationDrawerWidget extends StatelessWidget {
           builder: (context) => const GaesteView(),
         ));
         break;
-      /*case 5:
+      case 5:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => Artikel(),
+          builder: (context) => const Impressum(),
         ));
-        break;*/
+        break;
     }
   }
 }
