@@ -34,3 +34,17 @@ test:
       - $CI_PROJECT_DIR/mob_app/coverage
     reports:
       junit: mob_app/report.xml
+
+build:
+  stage: deploy
+  only:
+    - tags
+  image: "cirrusci/flutter:$FLUTTER_VERSION"
+  script:
+    - cd mob_app
+    - flutter build apk --split-per-abi
+  artifacts:
+    name: build_artifacts
+    paths:
+      - $CI_PROJECT_DIR/mob_app/build/app/outputs/apk/release
+    

@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:mob_app/views/gaestebuch/crud.dart';
 import 'package:mob_app/views/navigation_drawer.dart';
 import 'package:random_string/random_string.dart';
+import 'package:mob_app/globals.dart' as globals;
 
 class Upload extends StatefulWidget {
   const Upload({Key? key}) : super(key: key);
@@ -33,6 +34,8 @@ class _UploadState extends State<Upload> {
       }
     });
   }
+
+  String a = "${globals.user?.name} sagt: ";
 
   uploadEintrag() async {
     if (bild != null) {
@@ -121,7 +124,7 @@ class _UploadState extends State<Upload> {
                   TextField(
                     decoration: const InputDecoration(hintText: "Beschreibung"),
                     onChanged: (value) {
-                      beschreibung = value;
+                      beschreibung = a + value;
                     },
                   )
                 ],

@@ -1,4 +1,5 @@
 import 'dart:ffi';
+import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:mob_app/views/gaestebuch/crud.dart';
 import 'package:mob_app/views/gaestebuch/view_upload.dart';
 import 'package:mob_app/views/navigation_drawer.dart';
+import 'package:mob_app/globals.dart' as globals;
 
 class GaesteView extends StatefulWidget {
   const GaesteView({Key? key}) : super(key: key);
@@ -19,7 +21,6 @@ class _GaesteViewState extends State<GaesteView> {
   CrudMethoden crudMethoden = CrudMethoden();
 
   Stream? myStream;
-// Wie wird das kack ding scrollbar???????????????????????????????????????????????????
   Widget eintraege() {
     return Container(
       child: myStream != null
@@ -32,14 +33,13 @@ class _GaesteViewState extends State<GaesteView> {
                 return ListView.builder(
                     physics: const BouncingScrollPhysics(
                         parent: AlwaysScrollableScrollPhysics()),
-                    // ohne funktioniert scrollen nicht
                     itemCount: snapshot.data.docs.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return Containerlein(
-                          imgUrl: snapshot.data.docs[index]["imgUrl"],
-                          beschreibung: snapshot.data.docs[index]
-                              ["Beschreibung"]);
+                          imgUrl: snapshot.data.docs[index]["imgUrl"] ?? "",
+                          beschreibung:
+                              snapshot.data.docs[index]["Beschreibung"] ?? "");
                     });
               },
             )
@@ -107,27 +107,32 @@ class Containerlein extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: 140,
-        child: Stack(children: <Widget>[
-          ClipRRect(
-              child: CachedNetworkImage(
+    return Column(children: <Widget>[
+      SizedBox(
+          height: 140,
+          child: CachedNetworkImage(
             // Macht die Eintraege offline verfuegbar
             imageUrl: imgUrl,
             fit: BoxFit.cover,
             width: MediaQuery.of(context).size.width,
           )),
-          Container(
-              height: 140,
-              decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.3),
-                borderRadius: BorderRadius.circular(6),
-              )),
-          Container(
-            child: Column(
-              children: <Widget>[Text(beschreibung)],
+      SizedBox(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              beschreibung,
+              style: const TextStyle(
+                color: Colors.amber,
+              ),
+              textAlign: TextAlign.left,
             ),
-          )
-        ]));
+          ],
+        ),
+        height: 20,
+        width: 800,
+      ),
+    ]);
   }
 }
