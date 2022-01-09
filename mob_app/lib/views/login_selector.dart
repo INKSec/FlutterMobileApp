@@ -76,16 +76,18 @@ class LoginSelectorView extends StatelessWidget {
       //     clientId: "oF8h8CtSrBOoSpKVTD83hcMtzgrZAGAmFmVtpoPA",
       //     createNextWidget: createNextWidget),
       'Google': (context) => GenericOpenIDLoginView(
-          issuerUri: Uri.parse("https://accounts.google.com"),
-          clientId:
-              "661233299869-647c4hugbvell2osbksdsc8m8mim1kjr.apps.googleusercontent.com",
-          // Note that putting this in the source code is not very secure.
-          // However this is a public client and shouldn't even need an OAuth client secret.
-          // Seems like someone forgot to tell Google about that though. Oh well.
-          clientSecret: "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",
-          createNextWidget: createNextWidget),
-      'Local User': (context) =>
-          LocalUserLoginView(createNextWidget: createNextWidget),
+            issuerUri: Uri.parse("https://accounts.google.com"),
+            clientId:
+                "661233299869-647c4hugbvell2osbksdsc8m8mim1kjr.apps.googleusercontent.com",
+            // Note that putting this in the source code is not very secure.
+            // However this is a public client and shouldn't even need an OAuth client secret.
+            // Seems like someone forgot to tell Google about that though. Oh well.
+            clientSecret: "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",
+            createNextWidget: createNextWidget,
+            storageProvider: storageProvider,
+          ),
+      'Local User': (context) => LocalUserLoginView(
+          createNextWidget: createNextWidget, storageProvider: storageProvider),
     };
   }
 }
