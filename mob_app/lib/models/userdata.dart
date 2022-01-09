@@ -1,5 +1,13 @@
 import 'package:mob_app/storage/storage_provider.dart';
 
+/// This is a lot of boilerplate for something that
+/// would have been a lot easier with annotations and
+/// runtime reflection. But no.
+///
+/// Storage model for application user data.
+/// This is kept separately from the user authentication
+/// data as we may need to support multiple authentication
+/// providers.
 class UserData implements Storable {
   @override
   var serial;

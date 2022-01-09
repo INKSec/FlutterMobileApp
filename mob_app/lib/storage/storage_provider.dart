@@ -1,3 +1,4 @@
+/// Interface for storable data models.
 abstract class Storable {
   late final dynamic serial;
   Map<String, dynamic> serialize();
@@ -6,6 +7,9 @@ abstract class Storable {
       throw NoSuchMethodError;
 }
 
+/// Abstract Storage Provider
+///
+/// Provide CRUD operations on objects implementing the [Storable] interface.
 abstract class AbstractStorageProvider {
   Future<void> create(Storable storable);
   // this is weird but without reflection this is the best we can do

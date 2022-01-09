@@ -6,12 +6,16 @@ class FirestoreProvider extends AbstractStorageProvider {
   late final CollectionReference firestore_collection;
 
   FirestoreProvider(FirebaseFirestore? firestore, String collection) {
-    firestore_instance = firestore ?? FirebaseFirestore.instance;
+    firestore_instance = firestore ??
+        FirebaseFirestore
+            .instance; // Use default instance if none was provided.
     firestore_collection = firestore_instance.collection(collection);
   }
 
   @override
   Future<void> create(Storable storable) async {
+    // This looks weird but seems to be the correct way of doing it.
+    // Document databases are strange and wonderous things.
     await firestore_collection.doc(storable.serial).set(storable.serialize());
   }
 
@@ -23,6 +27,25 @@ class FirestoreProvider extends AbstractStorageProvider {
   @override
   Future<Storable> read(dynamic serial,
       Storable Function(Map<String, dynamic>) create_instance) async {
+    /// Proper explanation of what is going on to those whom it may concern.
+    ///
+    /// What you would normally do when implementing CRUD operations on
+    /// object based models is create an instance on a read operation using
+    /// a class derived from the storage object retrieved from the database.
+    /// This is sort of impossible with Flutter because we have no access to
+    /// reflection on types at runtime and therefore cannot create instances
+    /// of classes the types of which are not known at compile time.
+    /// The only workable solution I managed to come up with was to pass in a
+    /// callback function that creates the instance for us by defering the
+    /// object instatiation to a point in time where we know exactly what type
+    /// the object needs to be. Which is somewhere up the call chain where we
+    /// are actually interested in the resulting data. The storage provider
+    /// should not have to care about *what* kind of data we are reading, nor
+    /// its structure, apart from the information required to correctly parse it
+    /// from the database. While this does provide us with proper separation of
+    /// concerns, the solution is not at all obvious. I would have preferred to
+    /// do this differently but unfortunately it was not possible.
+    /// So there you are.
     DocumentSnapshot doc =
         await firestore_collection.doc(serial as String).get();
     return create_instance(doc.data() as Map<String, dynamic>);
