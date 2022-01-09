@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:mob_app/views/login/login_local_user.dart';
 import 'package:mob_app/views/login/login_oidc_generic.dart';
@@ -22,27 +24,38 @@ class LoginSelectorView extends StatelessWidget {
     }
     return Scaffold(
         body: Center(
-            child: Column(children: [
-      Text("Login with:", style: Theme.of(context).textTheme.headline6),
-      Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: navWidgets.entries
-              // this is a bit messy but it works.
-              // In essence we are iterating over the map of authentication
-              // provider widgets and turn it into a list where each entry
-              // is a widget containing a button that navigates to the
-              // corresponding LoginView.
-              .map<Widget>((MapEntry<String, Widget Function(dynamic)> entry) =>
-                  Container(
-                      padding: const EdgeInsets.all(8),
-                      child: ElevatedButton(
-                          child: Text(entry.key),
-                          onPressed: () => Navigator.of(context).push(
-                              MaterialPageRoute<void>(
-                                  builder: (context) =>
-                                      entry.value(context))))))
-              .toList())
-    ])));
+            child: Container(
+      padding: const EdgeInsets.fromLTRB(10, 150, 10, 150),
+      child: Column(children: [
+        Container(
+            padding: EdgeInsets.fromLTRB(0, 0, 0, 30),
+            child: Text("Login with:",
+                style: Theme.of(context).textTheme.headline6)),
+        Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: navWidgets.entries
+                // this is a bit messy but it works.
+                // In essence we are iterating over the map of authentication
+                // provider widgets and turn it into a list where each entry
+                // is a widget containing a button that navigates to the
+                // corresponding LoginView.
+                .map<Widget>(
+                    (MapEntry<String, Widget Function(dynamic)> entry) =>
+                        FractionallySizedBox(
+                            widthFactor: 1,
+                            child: Container(
+                                padding: const EdgeInsets.all(8),
+                                child: ElevatedButton(
+                                    child: Text(
+                                      entry.key,
+                                    ),
+                                    onPressed: () => Navigator.of(context).push(
+                                        MaterialPageRoute<void>(
+                                            builder: (context) =>
+                                                entry.value(context)))))))
+                .toList())
+      ]),
+    )));
   }
 
   Map<String, Widget Function(dynamic)> _buildNavigatorWidgets(
@@ -60,6 +73,9 @@ class LoginSelectorView extends StatelessWidget {
           issuerUri: Uri.parse("https://accounts.google.com"),
           clientId:
               "661233299869-647c4hugbvell2osbksdsc8m8mim1kjr.apps.googleusercontent.com",
+          // Note that putting this in the source code is not very secure.
+          // However this is a public client and shouldn't even need an OAuth client secret.
+          // Seems like someone forgot to tell Google about that though. Oh well.
           clientSecret: "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",
           createNextWidget: createNextWidget),
       'Local User': (context) =>
