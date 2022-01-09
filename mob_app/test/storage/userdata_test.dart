@@ -8,11 +8,8 @@ void main() {
     });
     test("Should be able to serialize a userdata instance", () {
       final userdata = UserData("displayName", "avatar", "serial");
-      expect(userdata.serialize(), {
-        "displayName": "displayName",
-        "avatar": "avatar",
-        "serial": "serial"
-      });
+      expect(userdata.serialize(),
+          {"displayName": "displayName", "avatar": "avatar"});
     });
     test("Should be able to deserialize a userdata instance", () {
       final userdata = UserData.deserialize({
