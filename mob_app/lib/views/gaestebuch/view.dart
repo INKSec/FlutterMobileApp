@@ -11,14 +11,23 @@ import 'package:mob_app/views/navigation_drawer.dart';
 import 'package:mob_app/globals.dart' as globals;
 
 class GaesteView extends StatefulWidget {
-  const GaesteView({Key? key}) : super(key: key);
+  late FirebaseFirestore firestore;
+
+  GaesteView({Key? key, FirebaseFirestore? firestore}) : super(key: key) {
+    this.firestore = firestore ?? FirebaseFirestore.instance;
+  }
 
   @override
-  _GaesteViewState createState() => _GaesteViewState();
+  _GaesteViewState createState() => _GaesteViewState(firestore);
 }
 
 class _GaesteViewState extends State<GaesteView> {
-  CrudMethoden crudMethoden = CrudMethoden();
+  late FirebaseFirestore firestore;
+  late CrudMethoden crudMethoden;
+
+  _GaesteViewState(this.firestore) {
+    crudMethoden = CrudMethoden(firestore: firestore);
+  }
 
   Stream? myStream;
   Widget eintraege() {
@@ -87,8 +96,12 @@ class _GaesteViewState extends State<GaesteView> {
           children: <Widget>[
             FloatingActionButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Upload()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Upload(
+                              firestore: firestore,
+                            )));
               },
               child: const Icon(Icons.add),
             )

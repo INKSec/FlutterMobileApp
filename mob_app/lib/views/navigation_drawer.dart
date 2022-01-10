@@ -107,7 +107,7 @@ class NavigationDrawerWidget extends StatelessWidget {
         break;
       case 4:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => const GaesteView(),
+          builder: (context) => GaesteView(),
         ));
         break;
       case 5:
