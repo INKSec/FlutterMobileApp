@@ -70,21 +70,22 @@ class LoginSelectorView extends StatelessWidget {
             issuerUri: Uri.parse("http://192.168.1.232:8001/issuer"),
             clientId: "81RRjLMem3ASRqzNI1xrnUkPELofcIAusPkjyk4Q",
             createNextWidget: createNextWidget,
+            useWebView: true,
           ),
       // 'OIDC Public Test Domain': (context) => GenericOpenIDLoginView(
       //     issuerUri: Uri.parse("http://136.243.14.112/issuer"),
       //     clientId: "oF8h8CtSrBOoSpKVTD83hcMtzgrZAGAmFmVtpoPA",
       //     createNextWidget: createNextWidget),
       'Google': (context) => GenericOpenIDLoginView(
-            issuerUri: Uri.parse("https://accounts.google.com"),
-            clientId:
-                "661233299869-647c4hugbvell2osbksdsc8m8mim1kjr.apps.googleusercontent.com",
-            // Note that putting this in the source code is not very secure.
-            // However this is a public client and shouldn't even need an OAuth client secret.
-            // Seems like someone forgot to tell Google about that though. Oh well.
-            clientSecret: "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",
-            createNextWidget: createNextWidget,
-          ),
+          issuerUri: Uri.parse("https://accounts.google.com"),
+          clientId:
+              "661233299869-647c4hugbvell2osbksdsc8m8mim1kjr.apps.googleusercontent.com",
+          // Note that putting this in the source code is not very secure.
+          // However this is a public client and shouldn't even need an OAuth client secret.
+          // Seems like someone forgot to tell Google about that though. Oh well.
+          clientSecret: "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",
+          createNextWidget: createNextWidget),
+
       'Local User': (context) =>
           LocalUserLoginView(createNextWidget: createNextWidget),
     };
