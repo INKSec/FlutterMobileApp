@@ -26,12 +26,14 @@ class Upload extends StatefulWidget {
 
 class _UploadState extends State<Upload> {
   late String beschreibung;
-  late File bild;
+  File? bild;
   final FirebaseFirestore firestore;
 
-  _UploadState(this.firestore);
+  _UploadState(this.firestore) {
+    crudMethoden = CrudMethoden(firestore: firestore);
+  }
 
-  CrudMethoden crudMethoden = CrudMethoden();
+  late CrudMethoden crudMethoden;
 
   Future getImage() async {
     var image = await ImagePicker().pickImage(source: ImageSource.gallery);
