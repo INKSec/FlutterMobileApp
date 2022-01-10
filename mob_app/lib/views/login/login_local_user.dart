@@ -2,17 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:mob_app/auth/auth_user.dart';
 import 'package:mob_app/auth/auth_provider.dart';
 import 'package:mob_app/auth/providers/local_user_provider.dart';
+import 'package:mob_app/storage/storage_provider.dart';
 import 'package:mob_app/views/login/login_base.dart';
 
 class LocalUserLoginView extends AbstractLoginView {
   final GlobalKey<FormFieldState> _loginFormUserKey =
       GlobalKey<FormFieldState>();
 
-  LocalUserLoginView({Key? key, required Function createNextWidget})
-      : super(
-            key: key,
-            provider: LocalUserProvider(),
-            createNextWidget: createNextWidget);
+  LocalUserLoginView({
+    Key? key,
+    required Function createNextWidget,
+  }) : super(
+          key: key,
+          provider: LocalUserProvider(),
+          createNextWidget: createNextWidget,
+        );
 
   @override
   Widget buildLoginView(BuildContext context) {

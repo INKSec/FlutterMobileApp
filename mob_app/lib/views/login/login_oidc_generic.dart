@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mob_app/auth/auth_user.dart';
 import 'package:mob_app/auth/auth_provider.dart';
 import 'package:mob_app/auth/providers/openid_provider.dart';
+import 'package:mob_app/storage/storage_provider.dart';
 import 'package:mob_app/views/login/login_base.dart';
 
 class GenericOpenIDLoginView extends AbstractLoginView {

@@ -11,6 +11,7 @@ import 'package:mob_app/views/news.dart';
 import 'package:mob_app/views/home_view.dart';
 import 'package:mob_app/views/gaestebuch/gaestebuch.dart';
 import 'package:mob_app/views/newsApp/article_view.dart';
+import 'package:mob_app/views/userdata_manage.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
   final padding = const EdgeInsets.symmetric(horizontal: 20);
@@ -53,6 +54,7 @@ class NavigationDrawerWidget extends StatelessWidget {
             buildMenuItem(
               text: 'Optionen',
               icon: Icons.car_rental,
+              onClicked: () => selectedItem(context, 6),
             ),
             const SizedBox(height: 20),
             buildMenuItem(
@@ -111,6 +113,11 @@ class NavigationDrawerWidget extends StatelessWidget {
       case 5:
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => const Impressum(),
+        ));
+        break;
+      case 6:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => UserDataManageView(),
         ));
         break;
     }

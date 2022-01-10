@@ -1,18 +1,23 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:mob_app/storage/storage_provider.dart';
 import 'package:mob_app/views/login/login_local_user.dart';
 import 'package:mob_app/views/login/login_oidc_generic.dart';
 
 class LoginSelectorView extends StatelessWidget {
   final void Function(BuildContext) createNextWidget;
+  final AbstractStorageProvider storageProvider;
   // ignore: prefer_const_constructors_in_immutables
-  LoginSelectorView({Key? key, required this.createNextWidget})
+  LoginSelectorView(
+      {Key? key,
+      required this.createNextWidget,
+      required AbstractStorageProvider this.storageProvider})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var navWidgets = _buildNavigatorWidgets(context);
+    var navWidgets = _buildNavigatorWidgets(context, storageProvider);
     if (navWidgets.length == 1) {
       // if there is only one widget, don't show the selector
       // and instead move on to the LoginView directly.
@@ -59,7 +64,7 @@ class LoginSelectorView extends StatelessWidget {
   }
 
   Map<String, Widget Function(dynamic)> _buildNavigatorWidgets(
-      BuildContext context) {
+      BuildContext context, AbstractStorageProvider storageProvider) {
     return {
       'OIDC': (context) => GenericOpenIDLoginView(
             issuerUri: Uri.parse("http://192.168.1.232:8001/issuer"),
