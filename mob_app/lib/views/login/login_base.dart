@@ -15,17 +15,14 @@ import 'package:mob_app/storage/storage_provider.dart';
 abstract class AbstractLoginView extends StatelessWidget {
   late final AuthProvider authProvider;
   late final Function nextWidget;
-  late final AbstractStorageProvider userStorageProvider;
 
-  AbstractLoginView(
-      {Key? key,
-      required AuthProvider provider,
-      required Function createNextWidget,
-      required AbstractStorageProvider storageProvider})
-      : super(key: key) {
+  AbstractLoginView({
+    Key? key,
+    required AuthProvider provider,
+    required Function createNextWidget,
+  }) : super(key: key) {
     authProvider = provider;
     nextWidget = createNextWidget;
-    userStorageProvider = storageProvider;
   }
 
   /// Embedded login view builder.
@@ -45,7 +42,7 @@ abstract class AbstractLoginView extends StatelessWidget {
       globals.user = user; //save user
       // try to fetch userdata from database
       try {
-        globals.userdata = await userStorageProvider.read(
+        globals.userdata = await globals.userDataStorageProvider.read(
             user.id, (data) => UserData.deserialize(data, user.id)) as UserData;
         log("Userdata loaded from database");
       } catch (e) {
@@ -53,7 +50,7 @@ abstract class AbstractLoginView extends StatelessWidget {
         // if no userdata found, create new one
         globals.userdata = UserData(user.name, "", user.id);
         log("Writing to database");
-        await userStorageProvider.create(globals.userdata!);
+        await globals.userDataStorageProvider.create(globals.userdata!);
       }
     } catch (e) {
       //if login fails, show an error message

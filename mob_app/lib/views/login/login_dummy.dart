@@ -11,15 +11,14 @@ class DummyLoginView extends AbstractLoginView {
   final GlobalKey<FormFieldState> _loginFormPasswordKey =
       GlobalKey<FormFieldState>();
 
-  DummyLoginView(
-      {Key? key,
-      required Function createNextWidget,
-      required AbstractStorageProvider storageProvider})
-      : super(
-            key: key,
-            provider: DummyAuthProvider(),
-            createNextWidget: createNextWidget,
-            storageProvider: storageProvider);
+  DummyLoginView({
+    Key? key,
+    required Function createNextWidget,
+  }) : super(
+          key: key,
+          provider: DummyAuthProvider(),
+          createNextWidget: createNextWidget,
+        );
 
   @override
   Widget buildLoginView(BuildContext context) {

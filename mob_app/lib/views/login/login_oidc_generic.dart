@@ -6,21 +6,20 @@ import 'package:mob_app/storage/storage_provider.dart';
 import 'package:mob_app/views/login/login_base.dart';
 
 class GenericOpenIDLoginView extends AbstractLoginView {
-  GenericOpenIDLoginView(
-      {Key? key,
-      required Uri issuerUri,
-      required String clientId,
-      String clientSecret = "",
-      required Function createNextWidget,
-      required AbstractStorageProvider storageProvider})
-      : super(
-            key: key,
-            createNextWidget: createNextWidget,
-            provider: OpenIDProvider(
-                clientId: clientId,
-                issuerUri: issuerUri,
-                clientSecret: clientSecret),
-            storageProvider: storageProvider);
+  GenericOpenIDLoginView({
+    Key? key,
+    required Uri issuerUri,
+    required String clientId,
+    String clientSecret = "",
+    required Function createNextWidget,
+  }) : super(
+          key: key,
+          createNextWidget: createNextWidget,
+          provider: OpenIDProvider(
+              clientId: clientId,
+              issuerUri: issuerUri,
+              clientSecret: clientSecret),
+        );
 
   @override
   Widget buildLoginView(BuildContext context) {

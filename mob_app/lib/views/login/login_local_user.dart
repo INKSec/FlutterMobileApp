@@ -9,15 +9,14 @@ class LocalUserLoginView extends AbstractLoginView {
   final GlobalKey<FormFieldState> _loginFormUserKey =
       GlobalKey<FormFieldState>();
 
-  LocalUserLoginView(
-      {Key? key,
-      required Function createNextWidget,
-      required AbstractStorageProvider storageProvider})
-      : super(
-            key: key,
-            provider: LocalUserProvider(),
-            createNextWidget: createNextWidget,
-            storageProvider: storageProvider);
+  LocalUserLoginView({
+    Key? key,
+    required Function createNextWidget,
+  }) : super(
+          key: key,
+          provider: LocalUserProvider(),
+          createNextWidget: createNextWidget,
+        );
 
   @override
   Widget buildLoginView(BuildContext context) {
