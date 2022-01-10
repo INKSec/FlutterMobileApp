@@ -59,8 +59,8 @@ class UserDataManageView extends StatelessWidget {
                         // unsafe type cast to UserData but tbh if this *was*
                         // null then we would have had problems earlier
                         globals.userDataStorageProvider
-                            .update(globals.userdata as UserData);
-                        Navigator.of(context).pop();
+                            .update(globals.userdata as UserData)
+                            .then((_) => Navigator.of(context).pop());
                       },
                     ),
                     ElevatedButton(
