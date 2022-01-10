@@ -60,7 +60,7 @@ class StartBildschirm extends StatelessWidget {
               color: HexColor("d3d3d3"),
             ),
             child: Text(
-              "Willkommen ${globals.user?.name}",
+              "Willkommen ${globals.userdata?.displayName}",
               style: TextStyle(
                   // Farbe Überschrift
                   color: HexColor('#000000'),
