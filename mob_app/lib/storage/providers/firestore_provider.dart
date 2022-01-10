@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:mob_app/storage/exceptions.dart';
 import 'package:mob_app/storage/storage_provider.dart';
 
 class FirestoreProvider extends AbstractStorageProvider {
@@ -48,7 +49,11 @@ class FirestoreProvider extends AbstractStorageProvider {
     /// So there you are.
     DocumentSnapshot doc =
         await firestore_collection.doc(serial as String).get();
-    return create_instance(doc.data() as Map<String, dynamic>);
+    if (doc.exists) {
+      return create_instance(doc.data() as Map<String, dynamic>);
+    } else {
+      throw StorageReadException("Document does not exist.");
+    }
   }
 
   @override
