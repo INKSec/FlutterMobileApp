@@ -9,7 +9,7 @@
 ## Description
 This repository contains all code, documentation and build system configuration for the project. The goal was to build an app for mobile devices that displays news and information about football matches to the User.
 
-Note that however neither of the authors knows anything about football. As such the challenge was of considerable difficulty.
+Note however that neither of the authors knows anything about football. As such the challenge was of considerable difficulty.
 
 ## Installation & Usage Instructions
 
