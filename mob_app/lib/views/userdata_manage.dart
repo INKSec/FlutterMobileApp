@@ -36,9 +36,10 @@ class UserDataManageView extends StatelessWidget {
                   widthFactor: 0.9,
                   child: TextFormField(
                     key: _nameKey,
+                    style: TextStyle(color: HexColor("#101010")),
                     decoration: InputDecoration(
                       labelText: 'Name',
-                      labelStyle: TextStyle(color: HexColor("#d3d3d3")),
+                      labelStyle: TextStyle(color: HexColor("#101010")),
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: HexColor("#d3d3d3")),
                       ),
