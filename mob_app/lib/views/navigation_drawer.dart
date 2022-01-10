@@ -9,7 +9,6 @@ import 'package:mob_app/views/impressum.dart';
 import 'package:mob_app/views/mein_verein.dart';
 import 'package:mob_app/views/news.dart';
 import 'package:mob_app/views/home_view.dart';
-import 'package:mob_app/views/gaestebuch/gaestebuch.dart';
 import 'package:mob_app/views/newsApp/article_view.dart';
 import 'package:mob_app/views/userdata_manage.dart';
 
