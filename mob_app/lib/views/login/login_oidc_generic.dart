@@ -10,14 +10,16 @@ class GenericOpenIDLoginView extends AbstractLoginView {
       required Uri issuerUri,
       required String clientId,
       String clientSecret = "",
-      required Function createNextWidget})
+      required Function createNextWidget,
+      bool useWebView = false})
       : super(
             key: key,
             createNextWidget: createNextWidget,
             provider: OpenIDProvider(
                 clientId: clientId,
                 issuerUri: issuerUri,
-                clientSecret: clientSecret));
+                clientSecret: clientSecret,
+                useWebView: useWebView));
 
   @override
   Widget buildLoginView(BuildContext context) {
