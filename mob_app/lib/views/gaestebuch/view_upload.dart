@@ -144,6 +144,8 @@ class _UploadState extends State<Upload> {
                 margin: const EdgeInsets.fromLTRB(220, 350, 20, 20),
                 child: Column(children: <Widget>[
                   ElevatedButton(
+                    style:
+                        ElevatedButton.styleFrom(shape: const CircleBorder()),
                     onPressed: () {
                       uploadEintrag();
                     },
