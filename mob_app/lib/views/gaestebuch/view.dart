@@ -22,10 +22,11 @@ class GaesteView extends StatefulWidget {
 }
 
 class _GaesteViewState extends State<GaesteView> {
+  late FirebaseFirestore firestore;
   late CrudMethoden crudMethoden;
 
-  _GaesteViewState(firestore) {
-    this.crudMethoden = CrudMethoden(firestore: firestore);
+  _GaesteViewState(this.firestore) {
+    crudMethoden = CrudMethoden(firestore: firestore);
   }
 
   Stream? myStream;
@@ -95,8 +96,12 @@ class _GaesteViewState extends State<GaesteView> {
           children: <Widget>[
             FloatingActionButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Upload()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Upload(
+                              firestore: firestore,
+                            )));
               },
               child: const Icon(Icons.add),
             )

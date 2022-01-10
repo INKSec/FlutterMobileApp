@@ -10,17 +10,24 @@ import 'package:random_string/random_string.dart';
 import 'package:mob_app/globals.dart' as globals;
 
 class Upload extends StatefulWidget {
-  const Upload({Key? key}) : super(key: key);
+  late FirebaseFirestore firestore;
+  Upload({Key? key, FirebaseFirestore? firestore}) : super(key: key) {
+    this.firestore = firestore ?? FirebaseFirestore.instance;
+  }
 
   @override
-  _UploadState createState() => _UploadState();
+  _UploadState createState() => _UploadState(firestore);
 }
 
 class _UploadState extends State<Upload> {
   late String beschreibung;
   File? bild;
 
-  CrudMethoden crudMethoden = CrudMethoden();
+  late CrudMethoden crudMethoden;
+
+  _UploadState(FirebaseFirestore firestore) {
+    crudMethoden = CrudMethoden(firestore: firestore);
+  }
 
 // laesst den Nutzer ein Bild aus der Galerie auswaehlen
   Future getImage() async {
