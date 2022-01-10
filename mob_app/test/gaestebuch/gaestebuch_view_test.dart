@@ -1,3 +1,4 @@
+import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mob_app/views/gaestebuch/gaestebuch.dart';
@@ -7,8 +8,8 @@ Widget createGaestebuchView() => const MaterialApp(
       home: GaesteView(),
     );
 
-Widget createUploadForm() => const MaterialApp(
-      home: Upload(),
+Widget createUploadForm() => MaterialApp(
+      home: Upload(firestore: FakeFirebaseFirestore()),
     );
 
 void main() {
