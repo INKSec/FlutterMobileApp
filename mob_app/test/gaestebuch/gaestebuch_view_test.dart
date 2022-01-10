@@ -4,8 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mob_app/views/gaestebuch/gaestebuch.dart';
 import 'package:mob_app/views/gaestebuch/view.dart';
 
-Widget createGaestebuchView() => const MaterialApp(
-      home: GaesteView(),
+Widget createGaestebuchView() => MaterialApp(
+      home: GaesteView(firestore: FakeFirebaseFirestore()),
     );
 
 Widget createUploadForm() => MaterialApp(
