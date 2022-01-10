@@ -1,21 +1,32 @@
 // zwischenspeicher
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mob_app/views/gaestebuch/crud.dart';
 import 'package:mob_app/views/navigation_drawer.dart';
 
 class Upload extends StatefulWidget {
-  const Upload({Key? key}) : super(key: key);
+  late FirebaseFirestore firestore;
+
+  Upload({
+    Key? key,
+    FirebaseFirestore? firestore,
+  }) : super(key: key) {
+    this.firestore = firestore ?? FirebaseFirestore.instance;
+  }
 
   @override
-  _UploadState createState() => _UploadState();
+  _UploadState createState() => _UploadState(firestore);
 }
 
 class _UploadState extends State<Upload> {
   late String beschreibung;
   late File bild;
+  final FirebaseFirestore firestore;
+
+  _UploadState(this.firestore);
 
   CrudMethoden crudMethoden = CrudMethoden();
 
