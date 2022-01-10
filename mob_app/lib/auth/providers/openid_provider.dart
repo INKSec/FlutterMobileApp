@@ -46,6 +46,7 @@ class OpenIDUser extends AuthenticatedUser {
 class OpenIDProvider extends AuthProvider {
   final String clientId;
   final String clientSecret;
+  final bool useWebView;
   late List<String> _scopes;
   late Task<Issuer> issuer;
 
@@ -58,7 +59,8 @@ class OpenIDProvider extends AuthProvider {
       {required this.clientId,
       this.clientSecret = "",
       required Uri issuerUri,
-      List<String> scopes = const ["openid"]})
+      List<String> scopes = const ["openid"],
+      this.useWebView = false})
       : super() {
     // Rant time.
     // This is wrong. Dart is doing this wrong.
@@ -87,7 +89,7 @@ class OpenIDProvider extends AuthProvider {
     final client = Client(await issuer(), clientId, clientSecret: clientSecret);
     _launch(String uri) async {
       if (await canLaunch(uri) || true) {
-        await launch(uri, forceWebView: false);
+        await launch(uri, forceWebView: useWebView);
       } else {
         throw 'Failed to open WebView for URI $uri';
       }
