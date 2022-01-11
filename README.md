@@ -13,10 +13,10 @@ Note however that neither of the authors knows anything about football. As such 
 
 ## Installation & Usage Instructions
 
-APK builds are available through our CI build system. To obtain the latest build, please go to `CI/CD > Pipelines`, find the newest tag, then click on the three dots next to the pipeline entry and select the `build:archive` option.  
+APK builds are available through our CI build system. To obtain the latest build, please go to `CI/CD > Pipelines > Tags`, find the newest tag, then click on the three dots next to the pipeline entry and select the `build:archive` option.  
 Note that APK builds are only performed for tagged commits in order to not overstress the build server.
 
-For usage instructions please consult the wiki.
+**For usage instructions please consult the wiki.**
 
 ## Code Structure
 
