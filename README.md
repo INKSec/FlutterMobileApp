@@ -1,6 +1,6 @@
 # Mobile Systeme [MOB] Semesterprojekt
 
-### Michael Burkhardt & Jascha Hirsekorn
+
 
 
 [![pipeline status](https://gitlab.iue.fh-kiel.de/jascha.hirsekorn/mob-app/badges/main/pipeline.svg)](https://gitlab.iue.fh-kiel.de/jascha.hirsekorn/mob-app/-/commits/main)
